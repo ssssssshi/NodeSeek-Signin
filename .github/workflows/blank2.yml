@@ -53,11 +53,11 @@ jobs:
           # 多账号支持（示例两个账号，可继续拓展）
           USER_1: ${{ secrets.USER }}
           PASS_1: ${{ secrets.PASS }}
-          NS_COOKIE_1: ${{ vars.NS_COOKIE }}
+          NS_COOKIE_1: ${{ vars.NS_COOKIE_1 }}
 
           USER_2: ${{ secrets.USER1 }}
           PASS_2: ${{ secrets.PASS }}
-          NS_COOKIE_2: ${{ vars.NS_COOKIE1 }}
+          NS_COOKIE_2: ${{ vars.NS_COOKIE_2 }}
 
 
         run: python nodeseek_sign1.py
