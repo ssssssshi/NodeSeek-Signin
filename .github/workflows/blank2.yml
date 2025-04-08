@@ -24,23 +24,6 @@ jobs:
       - name: 安装依赖
         run: pip install curl_cffi requests
 
-      - name: 打印调试信息（确认环境变量是否传入）
-        run: |
-          echo "🔍 USER_1=$USER_1"
-          echo "🔍 PASS_1=$PASS_1"
-          echo "🔍 NS_COOKIE_1=$NS_COOKIE_1"
-          echo "🔍 USER_2=$USER_2"
-          echo "🔍 PASS_2=$PASS_2"
-          echo "🔍 NS_COOKIE_2=$NS_COOKIE_2"
-        env:
-          USER_1: ${{ secrets.USER }}
-          PASS_1: ${{ secrets.PASS }}
-          NS_COOKIE_1: ${{ vars.NS_COOKIE }}
-          USER_2: ${{ secrets.USER1 }}
-          PASS_2: ${{ secrets.PASS }}
-          NS_COOKIE_2: ${{ vars.NS_COOKIE1 }}
-
-
       - name: 执行签到脚本
         env:
           GH_PAT: ${{ secrets.GH_PAT }}  # Personal Access Token，需有 repo 和 actions 权限
