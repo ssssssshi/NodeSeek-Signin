@@ -77,9 +77,17 @@ def session_login(user, password, solver_type, api_base_url, client_key):
         "source": "turnstile"
     }
     headers = {
-        'User-Agent': "Mozilla/5.0",
-        'Content-Type': "application/json",
-        'Referer': "https://www.nodeseek.com/signIn.html"
+        'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0",
+        'sec-ch-ua': "\"Not A(Brand\";v=\"99\", \"Microsoft Edge\";v=\"121\", \"Chromium\";v=\"121\"",
+        'sec-ch-ua-mobile': "?0",
+        'sec-ch-ua-platform': "\"Windows\"",
+        'origin': "https://www.nodeseek.com",
+        'sec-fetch-site': "same-origin",
+        'sec-fetch-mode': "cors",
+        'sec-fetch-dest': "empty",
+        'referer': "https://www.nodeseek.com/signIn.html",
+        'accept-language': "zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6",
+        'Content-Type': "application/json"
     }
     try:
         response = session.post("https://www.nodeseek.com/api/account/signIn", json=data, headers=headers)
@@ -98,9 +106,10 @@ def session_login(user, password, solver_type, api_base_url, client_key):
 # ---------------- 签到逻辑 ----------------
 def sign(ns_cookie, random_value="true"):
     headers = {
-        'User-Agent': "Mozilla/5.0",
-        'Cookie': ns_cookie,
-        'Referer': "https://www.nodeseek.com/board"
+        'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0",
+        'origin': "https://www.nodeseek.com",
+        'referer': "https://www.nodeseek.com/board",
+        'Cookie': ns_cookie
     }
     try:
         url = f"https://www.nodeseek.com/api/attendance?random={random_value}"
