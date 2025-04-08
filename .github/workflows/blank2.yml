@@ -60,4 +60,4 @@ jobs:
           NS_COOKIE_2: ${{ vars.NS_COOKIE1 }}
 
 
-        run: python nodeseek_sign.py
+        run: python nodeseek_sign1.py
