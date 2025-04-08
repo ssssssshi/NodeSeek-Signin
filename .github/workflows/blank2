@@ -1,0 +1,45 @@
+name: nodeseek多账号签到
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '00 16 * * *'  # 每天北京时间 00:00 执行（UTC+8）
+  workflow_dispatch:
+
+jobs:
+  run-nodeseek-sign:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 检出代码仓库
+        uses: actions/checkout@v3
+
+      - name: 设置 Python 环境
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: 安装依赖
+        run: pip install curl_cffi requests
+
+      - name: 执行签到脚本
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}  # Personal Access Token，需有 repo 和 actions 权限
+          GITHUB_REPOSITORY: ${{ github.repository }}
+
+          SOLVER_TYPE: ${{ secrets.SOLVER_TYPE }}
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+          CLIENTT_KEY: ${{ secrets.CLIENTT_KEY }}
+
+          # 多账号支持（示例两个账号，可继续拓展）
+          USER_1: ${{ secrets.USER }}
+          PASS_1: ${{ secrets.PASS }}
+          NS_COOKIE_1: ${{ vars.NS_COOKIE }}
+
+          USER_2: ${{ secrets.USER1 }}
+          PASS_2: ${{ secrets.PASS }}
+          NS_COOKIE_2: ${{ vars.NS_COOKIE1 }}
+
+        run: python nodeseek_sign.py
